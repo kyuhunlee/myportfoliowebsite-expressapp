@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kyu-Hun Lee - Portfolio</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+
+      body {
+        min-height: 100vh;
+        background: linear-gradient(
+          135deg,
+          #0f172a 0%,
+          #1e1b4b 50%,
+          #312e81 100%
+        );
+        background-size: 200% 200%;
+        animation: gradientBG 15s ease infinite;
+        color: #fff;
+        line-height: 1.6;
+      }
+
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 1.5rem;
+        background: rgba(15, 23, 42, 0.8);
+        backdrop-filter: blur(10px);
+        z-index: 100;
+      }
+
+      .nav-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-logo {
+        font-weight: 700;
+        font-size: 1.5rem;
+        background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .nav-button {
+        display: inline-flex;
+        align-items: center;
+        padding: 12px 24px;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .nav-button:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6rem 2rem 2rem;
+      }
+
+      .container {
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .hero-content {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .welcome-text {
+        font-size: 4.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+      }
+
+      .subtitle {
+        color: #94a3b8;
+        font-size: 1.5rem;
+        margin-bottom: 3rem;
+      }
+
+      .section {
+        padding: 6rem 2rem;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 3rem;
+        text-align: center;
+        background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .projects {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 4rem;
+      }
+
+      .project-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 2rem;
+        transition: all 0.3s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      .project-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #fff;
+      }
+
+      .project-description {
+        color: #94a3b8;
+        margin-bottom: 1.5rem;
+      }
+
+      .tech-stack {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .tech-tag {
+        padding: 0.25rem 0.75rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        font-size: 0.875rem;
+        color: #94a3b8;
+      }
+
+      .skills {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: 4rem;
+      }
+
+      .skill-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 2rem;
+        text-align: center;
+      }
+
+      .skill-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #fff;
+      }
+
+      .skill-list {
+        color: #94a3b8;
+        list-style: none;
+      }
+
+      .skill-list li {
+        margin-bottom: 0.5rem;
+      }
+
+      .glow {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        background: radial-gradient(
+          circle at 50% 50%,
+          rgba(120, 119, 198, 0.1),
+          transparent 70%
+        );
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .social-link {
+        color: #94a3b8;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .social-link:hover {
+        color: #fff;
+      }
+
+      .experience-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .experience-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+      }
+
+      .company-name {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #fff;
+      }
+
+      .date {
+        color: #94a3b8;
+      }
+
+      .position {
+        color: #94a3b8;
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+
+      .achievements {
+        list-style-type: none;
+      }
+
+      .achievements li {
+        color: #94a3b8;
+        margin-bottom: 0.5rem;
+        padding-left: 1.5rem;
+        position: relative;
+      }
+
+      .achievements li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #6366f1;
+      }
+
+      .certifications {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .cert-badge {
+        background: rgba(99, 102, 241, 0.1);
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        color: #94a3b8;
+        font-size: 0.875rem;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .animated-section {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.6s ease forwards;
+      }
+
+      .delay-1 {
+        animation-delay: 0.2s;
+      }
+      .delay-2 {
+        animation-delay: 0.4s;
+      }
+      .delay-3 {
+        animation-delay: 0.6s;
+      }
+
+      .floating {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .skill-card {
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .skill-card:hover {
+        transform: translateY(-5px) scale(1.02);
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .experience-card {
+        transition: all 0.3s ease;
+      }
+
+      .experience-card:hover {
+        transform: translateX(10px);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .cert-badge {
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .cert-badge:hover {
+        background: rgba(99, 102, 241, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .mouse-cursor-gradient-tracking {
+        position: relative;
+        background: #7928ca;
+        padding: 0.5rem 1rem;
+        font-size: 1.2rem;
+        border-radius: 4px;
+        color: white;
+        cursor: pointer;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .mouse-cursor-gradient-tracking::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle at var(--mouse-x, 0) var(--mouse-y, 0),
+          rgba(255, 255, 255, 0.2),
+          transparent 50%
+        );
+        z-index: 0;
+        transition: opacity 0.2s;
+        opacity: 0;
+      }
+
+      .mouse-cursor-gradient-tracking:hover::before {
+        opacity: 1;
+      }
+
+      .glow-on-hover {
+        position: relative;
+        z-index: 1;
+      }
+
+      .glow-on-hover::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: inherit;
+        filter: blur(30px);
+        opacity: 0;
+        transition: opacity 0.3s;
+        z-index: -1;
+      }
+
+      .glow-on-hover:hover::after {
+        opacity: 0.7;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="glow"></div>
+    <nav class="nav">
+      <div class="nav-content">
+        <div class="nav-logo floating">KL</div>
+        <div style="display: flex; gap: 1rem">
+          <a href="/postcard" class="nav-button glow-on-hover"
+            >Write a Note ✉️</a
+          >
+          <a href="/index" class="nav-button glow-on-hover">Contact Me →</a>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-content animated-section">
+        <h1 class="welcome-text floating">Kyu-Hun Lee</h1>
+        <p class="subtitle delay-1">
+          Enterprise Solutions Architect & Software Engineer
+        </p>
+        <div class="social-links delay-2">
+          <a href="tel:360-742-2308" class="social-link">📱 360-742-2308</a>
+          <a href="mailto:kyuhunlee@gmail.com" class="social-link">📧 Email</a>
+          <a href="https://linkedin.com/in/kyuhunlee" class="social-link"
+            >💼 LinkedIn</a
+          >
+        </div>
+        <a
+          href="/index"
+          class="nav-button glow-on-hover delay-3"
+          style="margin-top: 2rem"
+          >Get in Touch →</a
+        >
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Professional Experience</h2>
+
+        <div class="experience-card">
+          <div class="experience-header">
+            <h3 class="company-name">Dell EMC</h3>
+            <span class="date">June 2021 - October 2024</span>
+          </div>
+          <p class="position">
+            Enterprise Solutions Architect / Sales Engineer
+          </p>
+          <ul class="achievements">
+            <li>
+              Served as a trusted technical advisor to Fortune 50 enterprises,
+              leading technical strategy and driving solution adoption
+            </li>
+            <li>
+              Influenced over $14 million in closed revenue through technical
+              proof-of-value and competitive differentiation
+            </li>
+            <li>
+              Designed technical solutions for networking, hybrid cloud
+              architecture, and disaster recovery
+            </li>
+            <li>
+              Automated Salesforce pipeline tracking using JavaScript,
+              Puppeteer, and GenAI, reducing manual work by 90%
+            </li>
+          </ul>
+        </div>
+
+        <div class="experience-card">
+          <div class="experience-header">
+            <h3 class="company-name">Splurge</h3>
+            <span class="date">Jan 2020 - August 2020</span>
+          </div>
+          <p class="position">Software Engineer</p>
+          <ul class="achievements">
+            <li>
+              Developed mobile app for location-specific event listings using
+              React Native and JavaScript
+            </li>
+            <li>
+              Implemented REST APIs and Redux for enhanced backend functionality
+            </li>
+          </ul>
+        </div>
+
+        <div class="experience-card">
+          <div class="experience-header">
+            <h3 class="company-name">Q Cuts</h3>
+            <span class="date">Sep 2017 - Jan 2020</span>
+          </div>
+          <p class="position">Founder</p>
+          <ul class="achievements">
+            <li>
+              Grew customer base by 200% YoY to over 200 college students in
+              Greater Boston
+            </li>
+            <li>
+              Implemented booking software and data-driven metrics for business
+              optimization
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Technical Skills & Certifications</h2>
+        <div class="skills">
+          <div class="skill-card">
+            <h3 class="skill-title">Cloud & Infrastructure</h3>
+            <ul class="skill-list">
+              <li>AWS, Azure, GCP</li>
+              <li>VMware</li>
+              <li>Hybrid Cloud</li>
+              <li>Containerization</li>
+            </ul>
+          </div>
+          <div class="skill-card">
+            <h3 class="skill-title">Development</h3>
+            <ul class="skill-list">
+              <li>Python, JavaScript</li>
+              <li>React Native</li>
+              <li>REST APIs</li>
+              <li>SQL</li>
+            </ul>
+          </div>
+          <div class="skill-card">
+            <h3 class="skill-title">Tools & Technologies</h3>
+            <ul class="skill-list">
+              <li>PowerShell/Bash</li>
+              <li>Tableau</li>
+              <li>Enterprise Solutions</li>
+              <li>Virtualization</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="certifications">
+          <span class="cert-badge">AWS Solutions Architect Associate</span>
+          <span class="cert-badge">AWS Cloud Practitioner</span>
+          <span class="cert-badge">Azure Fundamentals</span>
+          <span class="cert-badge">GCP Digital Leader</span>
+          <span class="cert-badge">VMware Technical Sales Professional</span>
+          <span class="cert-badge">VTSP Cloud Foundation 4.0</span>
+          <span class="cert-badge"
+            >DCA Information Storage & Management 4.0</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Education</h2>
+        <div class="experience-card">
+          <div class="experience-header">
+            <h3 class="company-name">Boston College</h3>
+            <span class="date">Morrissey College of Arts and Sciences</span>
+          </div>
+          <p class="position">Computer Science & Economics</p>
+          <ul class="achievements">
+            <li>Computer Science Society</li>
+            <li>Collegiate Esports</li>
+            <li>Undergraduate Government</li>
+            <li>Consulting Club</li>
+            <li>Outdoors Club</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Animate sections on scroll
+      const observerOptions = {
+        threshold: 0.1,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".section").forEach((section) => {
+        section.classList.add("animated-section");
+        observer.observe(section);
+      });
+
+      // Mouse gradient effect
+      document.addEventListener("mousemove", (e) => {
+        document
+          .querySelectorAll(".mouse-cursor-gradient-tracking")
+          .forEach((button) => {
+            const rect = button.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            button.style.setProperty("--mouse-x", `${x}px`);
+            button.style.setProperty("--mouse-y", `${y}px`);
+          });
+      });
+
+      // Add hover effect to skill cards
+      document.querySelectorAll(".skill-card").forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+          card.style.transform = "translateY(-5px) scale(1.02)";
+        });
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "translateY(0) scale(1)";
+        });
+      });
+    </script>
+  </body>
+</html>

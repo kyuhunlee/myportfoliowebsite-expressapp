@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Write Me a Note - Kyu-Hun Lee</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+
+      body {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+        color: #fff;
+        line-height: 1.6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        perspective: 1000px;
+      }
+
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 1.5rem;
+        background: rgba(15, 23, 42, 0.8);
+        backdrop-filter: blur(10px);
+        z-index: 100;
+      }
+
+      .nav-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-logo {
+        font-weight: 700;
+        font-size: 1.5rem;
+        background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .nav-button {
+        display: inline-flex;
+        align-items: center;
+        padding: 12px 24px;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .nav-button:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      .postcard-container {
+        width: 600px;
+        height: 400px;
+        margin: 100px auto;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 1s ease;
+      }
+
+      .postcard-container:hover {
+        transform: rotateX(180deg);
+      }
+
+      .postcard-front,
+      .postcard-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 20px;
+        padding: 40px;
+        background: #f4f1de;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      }
+
+      .postcard-front {
+        background: linear-gradient(45deg, #f4f1de, #e6e1c5);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #2f2f2f;
+      }
+
+      .postcard-back {
+        transform: rotateX(180deg);
+        background: linear-gradient(45deg, #f4f1de, #e6e1c5);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .stamp {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 60px;
+        height: 80px;
+        border: 2px solid #2f2f2f;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Caveat", cursive;
+        color: #2f2f2f;
+        font-size: 0.8rem;
+        transform: rotate(5deg);
+      }
+
+      .postcard-title {
+        font-family: "Caveat", cursive;
+        font-size: 2.5rem;
+        color: #2f2f2f;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      .postcard-text {
+        font-family: "Caveat", cursive;
+        font-size: 1.5rem;
+        color: #2f2f2f;
+        width: 100%;
+        height: 200px;
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid #2f2f2f;
+        resize: none;
+        line-height: 1.8;
+        padding: 0;
+        margin-top: 20px;
+      }
+
+      .postcard-text:focus {
+        outline: none;
+      }
+
+      .postcard-lines {
+        position: absolute;
+        width: calc(100% - 80px);
+        height: calc(100% - 80px);
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .postcard-line {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: rgba(47, 47, 47, 0.1);
+      }
+
+      .address-line {
+        position: relative;
+        margin-bottom: 10px;
+        padding-left: 100px;
+        font-family: "Caveat", cursive;
+        color: #2f2f2f;
+        font-size: 1.2rem;
+      }
+
+      .address-line::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        color: #666;
+        font-size: 1rem;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px) rotate(5deg);
+        }
+        50% {
+          transform: translateY(-5px) rotate(5deg);
+        }
+        100% {
+          transform: translateY(0px) rotate(5deg);
+        }
+      }
+
+      .stamp {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .hover-instruction {
+        position: fixed;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #94a3b8;
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-content">
+        <a href="/" class="nav-logo">KL</a>
+        <a href="/" class="nav-button">← Back to Portfolio</a>
+      </div>
+    </nav>
+
+    <div class="postcard-container">
+      <div class="postcard-front">
+        <div class="stamp">STAMP<br />HERE</div>
+        <h1 class="postcard-title">Write me a note</h1>
+        <div class="address-line" data-label="To:">Kyu-Hun Lee</div>
+        <div class="address-line" data-label="Email:">kyuhunlee@gmail.com</div>
+        <div class="address-line" data-label="Phone:">360-742-2308</div>
+      </div>
+      <div class="postcard-back">
+        <div class="postcard-lines">
+          <div class="postcard-line" style="top: 50px"></div>
+          <div class="postcard-line" style="top: 90px"></div>
+          <div class="postcard-line" style="top: 130px"></div>
+          <div class="postcard-line" style="top: 170px"></div>
+          <div class="postcard-line" style="top: 210px"></div>
+        </div>
+        <textarea
+          class="postcard-text"
+          placeholder="Write your message here..."
+          spellcheck="false"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="hover-instruction">Hover over the postcard to flip it</div>
+  </body>
+</html>
